@@ -21,7 +21,7 @@ public class JpDictionaryController {
     }
 
     // 해당 레벨의
-    @GetMapping("/level/{level}")
+    @GetMapping("/difflevel/{difflevel}")
     public ResponseEntity<List<JpDictionary>> getRandomWords(@PathVariable int difflevel, @RequestParam(defaultValue = "20") int count) {
         List<JpDictionary> words = jpDictionaryService.getRandomWordsByDifflevel(difflevel, count);
         return ResponseEntity.ok(words);
