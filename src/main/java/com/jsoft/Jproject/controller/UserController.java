@@ -15,7 +15,7 @@ public class UserController {
 
     private final UserService userService;
 
-    // 생성자 주입
+    // 생성자 주입함
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
