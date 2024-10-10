@@ -22,6 +22,8 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    
+
     @Override
     @Transactional
     public User createUser(User user) {
@@ -40,9 +42,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<User> getUserByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
+    public User save(User user) {
+        return userRepository.save(user); // 사용자 저장
+    }
 
+
+    public User updateUser(String email, User userUpdates) {
+        User existingUser = userRepository.findByEmail(email).orElseThrow(() -> 
+            new RuntimeException("이메일로 찾는 사용자 없음: " + email));
+
+        // 사용자 필드 업데이트
+        existingUser.setName(userUpdates.getName());
+        existingUser.setDifflevel(userUpdates.getDifflevel());
+        existingUser.setCorrect_rate(userUpdates.getCorrect_rate());
+
+        return userRepository.save(existingUser);
+    }
 }

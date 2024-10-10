@@ -13,7 +13,13 @@ public class User {
     @Id
     private String email;
     private String name;
-    private int difflevel;
+    private Integer difflevel;
     private float correct_rate;
+
+    public void setDifflevel(Integer difflevel) {
+        this.difflevel = (difflevel != null) ? difflevel : 1; // difflevel이 null이면 1로 설정
+    }
 }
+
+
 
